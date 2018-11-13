@@ -133,3 +133,18 @@ for i in range(num_images):
   plot_image(i, predictions, test_labels, test_images)
   plt.subplot(num_rows, 2*num_cols, 2*i+2)
   plot_value_array(i, predictions, test_labels)
+
+# Get an image from the test dataset
+img = test_images[0]
+
+# Add the image to a batch where it's the only member.
+img = (np.expand_dims(img,0))
+
+# Predict the image
+predictions_single = model.predict(img)
+print(predictions_single)
+
+plot_value_array(0, predictions_single, test_labels)
+_ = plt.xticks(range(10), class_names, rotation=45)
+
+np.argmax(predictions_single[0])
